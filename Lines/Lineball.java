@@ -394,15 +394,8 @@ public class Lineball{
 			objectStream.close();   
 			fileStream.close();   
 
-			// JOptionPane.showConfirmDialog(frame, 
-			// 	"Save game state successfully.", 
-			// 	"Snake Game",   
-			// 	JOptionPane.DEFAULT_OPTION);   
-		} catch (Exception e) {   
-			// JOptionPane.showConfirmDialog(frame, 
-			// 	e.toString() + "\nFail to save game state.",   
-			// 	"Snake Game", 
-			// 	JOptionPane.DEFAULT_OPTION);   
+		} catch (Exception e) {
+			System.out.println(e);
 		} 
 	}
 	
