@@ -10,6 +10,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 public class Lineball{
 
@@ -373,6 +379,43 @@ public class Lineball{
 	    
 		return false;	
      }
+	 
+	 
+	public void saveGameDataToFile(String filename) {   
+
+		File file = new File(filename);
+		try {
+			FileOutputStream fileStream = new FileOutputStream(file);   
+			ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);   
+
+			objectStream.writeObject(MarkResult);   
+			objectStream.close();   
+			fileStream.close();   
+
+			// JOptionPane.showConfirmDialog(frame, 
+			// 	"Save game state successfully.", 
+			// 	"Snake Game",   
+			// 	JOptionPane.DEFAULT_OPTION);   
+		} catch (Exception e) {   
+			// JOptionPane.showConfirmDialog(frame, 
+			// 	e.toString() + "\nFail to save game state.",   
+			// 	"Snake Game", 
+			// 	JOptionPane.DEFAULT_OPTION);   
+		} 
+	}
+	
+	public void loadGameDataFromFile(String filename) {   
+		try{
+			FileInputStream fileStream = new FileInputStream(filename);   
+			ObjectInputStream objectStream = new ObjectInputStream(fileStream);   
+
+			MarkResult = (double) objectStream.readObject();
+			fileStream.close();
+		}
+		catch(Exception e){
+			System.out.println(e);    
+		} 
+	}
 //    public void Test(){// Test ham loang  
 //       // Dat vao them  bong de test 
 //       int i,j;
