@@ -388,7 +388,9 @@ public class Lineball{
 			FileOutputStream fileStream = new FileOutputStream(file);   
 			ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);   
 
-			objectStream.writeObject(MarkResult);   
+			objectStream.writeObject(MarkResult);
+			objectStream.writeObject(ball);
+			
 			objectStream.close();   
 			fileStream.close();   
 
@@ -410,6 +412,7 @@ public class Lineball{
 			ObjectInputStream objectStream = new ObjectInputStream(fileStream);   
 
 			MarkResult = (double) objectStream.readObject();
+			ball = (int[][]) objectStream.readObject();
 			fileStream.close();
 		}
 		catch(Exception e){
