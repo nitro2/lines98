@@ -275,13 +275,13 @@ public class LineFrame extends JFrame{
 //----------------------------------------------------------------------------------------	
 	//save game
 	public void saveGame(){
-		a.saveGameDataToFile("save.dat");
+		a.saveGameDataToFile();
 	}
 
 //----------------------------------------------------------------------------------------	
 	//save game
 	public void loadGame(){
-		a.loadGameDataFromFile("save.dat");
+		a.loadGameDataFromFile();
 		displayNextBall();
 		score.setText((int)a.MarkResult+" ");    	    	
 		drawBall();	   

@@ -1,3 +1,3 @@
 rm *.class Lines/*.class
-javac PlayGame.java -Xlint:deprecation
+javac PlayGame.java -Xdiags:verbose
 java PlayGame

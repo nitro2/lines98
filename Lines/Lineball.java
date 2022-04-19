@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Lineball{
 
@@ -381,32 +382,59 @@ public class Lineball{
      }
 	 
 	 
-	public void saveGameDataToFile(String filename) {   
+	public void saveGameDataToFile() {
 
-		File file = new File(filename);
 		try {
-			FileOutputStream fileStream = new FileOutputStream(file);   
-			ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);   
-
-			objectStream.writeObject(MarkResult);
-			objectStream.writeObject(ball);
+			// parent component of the dialog
+			JFrame parentFrame = new JFrame();
 			
-			objectStream.close();   
-			fileStream.close();   
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setDialogTitle("Specify a file to save");
+			fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Line98 save file", "l98"));
+			
+			int userSelection = fileChooser.showSaveDialog(parentFrame);
+			
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				String filename = fileChooser.getSelectedFile().toString();
+				if (!filename .endsWith(".l98")){
+					filename += ".l98";
+				}
+				File file = new File(filename);
+				System.out.println("Save as file: " + file.getAbsolutePath());
+
+				FileOutputStream fileStream = new FileOutputStream(file);   
+				ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);   
+
+				objectStream.writeObject(MarkResult);
+				objectStream.writeObject(ball);
+				
+				objectStream.close();   
+				fileStream.close();   
+			}
 
 		} catch (Exception e) {
 			System.out.println(e);
 		} 
 	}
 	
-	public void loadGameDataFromFile(String filename) {   
+	public void loadGameDataFromFile() {   
 		try{
-			FileInputStream fileStream = new FileInputStream(filename);   
-			ObjectInputStream objectStream = new ObjectInputStream(fileStream);   
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			fileChooser.setFileFilter(new FileNameExtensionFilter("Line98 save file", "l98"));
+			int result = fileChooser.showOpenDialog(null);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File file = fileChooser.getSelectedFile();
+				System.out.println("Selected file: " + file.getAbsolutePath());
 
-			MarkResult = (double) objectStream.readObject();
-			ball = (int[][]) objectStream.readObject();
-			fileStream.close();
+				FileInputStream fileStream = new FileInputStream(file.getName());   
+				ObjectInputStream objectStream = new ObjectInputStream(fileStream);   
+
+				MarkResult = (double) objectStream.readObject();
+				ball = (int[][]) objectStream.readObject();
+				fileStream.close();
+			}
 		}
 		catch(Exception e){
 			System.out.println(e);    
