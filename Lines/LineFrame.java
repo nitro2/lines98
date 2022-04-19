@@ -91,8 +91,28 @@ public class LineFrame extends JFrame{
 				startGame();
 		}				
 		});
-	    gameMenu.add(newItem);	    
-	    
+		gameMenu.add(newItem);
+		
+		JMenuItem saveItem=new JMenuItem("Save"); //them vao muc Save
+		saveItem.setToolTipText("Save selected ");
+		saveItem.setMnemonic('s');
+		saveItem.addActionListener(new ActionListener(){		
+			public void actionPerformed(ActionEvent ae){
+				saveGame();
+		}				
+		});
+	    gameMenu.add(saveItem);	
+		
+		JMenuItem loadItem=new JMenuItem("Load"); //them vao muc Load
+		loadItem.setToolTipText("Load selected ");
+		loadItem.setMnemonic('l');
+		loadItem.addActionListener(new ActionListener(){		
+			public void actionPerformed(ActionEvent ae){
+				loadGame();
+		}				
+		});
+		gameMenu.add(loadItem);	
+
 	    JMenuItem exitItem=new JMenuItem("Exit");//them vao muc exit
 		exitItem.setToolTipText(" Exit selected ");
 		exitItem.setMnemonic('e');
@@ -252,6 +272,21 @@ public class LineFrame extends JFrame{
 		x=y=-1;
 	
 	}
+//----------------------------------------------------------------------------------------	
+	//save game
+	public void saveGame(){
+		a.saveGameDataToFile();
+	}
+
+//----------------------------------------------------------------------------------------	
+	//save game
+	public void loadGame(){
+		a.loadGameDataFromFile();
+		displayNextBall();
+		score.setText((int)a.MarkResult+" ");    	    	
+		drawBall();	   
+	}
+
  //----------------------------------------------------------------------------------------	
 	//dung tro choi khi cac o da xep day bong
 	public void stopGame()    throws IOException{
@@ -277,7 +312,8 @@ public class LineFrame extends JFrame{
 				GameOver.setLayout(new GridLayout(2,1));
 				GameOver.setSize(290,150);
 				GameOver.setResizable(false);
-				GameOver.show();
+				// GameOver.show(); // Replace Deprecated method
+				GameOver.setVisible(true);
 				GameOver.addWindowListener( new WindowAdapter() {// tao game moi khi tat cua so
 					public void windowClosing(WindowEvent e){ 
 							startGame();

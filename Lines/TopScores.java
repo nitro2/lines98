@@ -76,7 +76,8 @@ public class TopScores extends JFrame{
 	//hien thi bang TopScores
 	public void showTopScores()throws IOException{
 		readFile();
-		show();
+		// show();
+		setVisible(true);
 	}
 	
 	//reset la TopScores
