@@ -339,7 +339,7 @@ public class Lineball {
       JFileChooser fileChooser = new JFileChooser();
       fileChooser.setDialogTitle("Specify a file to save");
       fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
-      fileChooser.addChoosableFileFilter(
+      fileChooser.setFileFilter(
         new FileNameExtensionFilter("Line98 save file", "l98")
       );
 

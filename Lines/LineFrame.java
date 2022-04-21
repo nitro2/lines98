@@ -14,7 +14,7 @@ public class LineFrame extends JFrame {
     public Lineball a = new Lineball();
     public TopScores topScores = new TopScores();
     public Player player = new Player();
-    public JFrame GameOver = new JFrame(" GameOver !");
+    public JFrame GameOver;
 
     public Icon icon[] = new Icon[22];
     public JButton button[][] = new JButton[9][9]; // Mang JButton the hien trang thai cua bang
@@ -69,6 +69,17 @@ public class LineFrame extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
     setVisible(true);
+    
+    
+    GameOver = new JFrame(" GameOver !");
+    JButton msg1 = new JButton(" TRO CHOI KET THUC !");
+    JButton msg2 = new JButton(" Ban Ghi Duoc " + player.scores + " Diem");
+    GameOver.add(msg1);
+    GameOver.add(msg2);
+    GameOver.setLayout(new GridLayout(2, 1));
+    GameOver.setSize(290, 150);
+    GameOver.setResizable(false);
+    GameOver.setVisible(false);
   }
 
     // ----------------------------------------------------------------------------------------
@@ -223,7 +234,7 @@ public class LineFrame extends JFrame {
         }
 
         public void actionPerformed(ActionEvent ae) {
-            // if (ae.getSource() == this) {
+            if (a.gameover != true) {
                 JButton jb = (JButton) ae.getSource();
                 Icon n = jb.getIcon();
                 // System.out.println(String.format("Position: (%d, %d)  (%d, %d)",  x,y, x_b, y_b));
@@ -265,7 +276,13 @@ public class LineFrame extends JFrame {
                 try {
                     stopGame(); // dung` tro choi neu cac o da~ day` bong
                 } catch (IOException e) {
+                    System.out.println(e);
                 }
+            }
+            else{
+                GameOver.setVisible(false);
+                a.StartGame();
+            }
             // }
         }
     }
@@ -284,6 +301,7 @@ public class LineFrame extends JFrame {
     // ----------------------------------------------------------------------------------------
     // bat dau tro choi
     public void startGame() {
+        GameOver.setVisible(false);
         a.StartGame();
         score.setText("0 ");
         displayNextBall();
@@ -304,6 +322,7 @@ public class LineFrame extends JFrame {
         displayNextBall();
         score.setText((int) a.MarkResult + " ");
         drawBall();
+        GameOver.setVisible(false);
     }
 
     // ----------------------------------------------------------------------------------------
@@ -321,24 +340,17 @@ public class LineFrame extends JFrame {
                 player.setName();
                 topScores.add(player);
                 topScores.showTopScores();
-                startGame();
             } else {
-                GameOver = new JFrame(" GameOver !");
-                JButton msg1 = new JButton(" TRO CHOI KET THUC !");
-                JButton msg2 = new JButton(" Ban Ghi Duoc " + player.scores + " Diem");
-                GameOver.add(msg1);
-                GameOver.add(msg2);
-                GameOver.setLayout(new GridLayout(2, 1));
-                GameOver.setSize(290, 150);
-                GameOver.setResizable(false);
-                // GameOver.show(); // Replace Deprecated method
-                GameOver.setVisible(true);
-                GameOver.addWindowListener(
-                        new WindowAdapter() { // tao game moi khi tat cua so
-                            public void windowClosing(WindowEvent e) {
-                                startGame();
-                            }
-                        });
+                // System.out.println(GameOver.toString());
+                // System.out.println(GameOver.getComponentCount());
+                // if (GameOver.getComponentCount() >= 2){
+                //     JButton msg2 = (JButton) GameOver.getComponent(1);
+                //     if (msg2 != null) {
+                //         msg2.setText(" Ban Ghi Duoc " + player.scores + " Diem");
+                        
+                //     }
+                // }
+                // GameOver.setVisible(true);
             }
         }
     }
