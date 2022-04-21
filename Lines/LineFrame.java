@@ -226,11 +226,15 @@ public class LineFrame extends JFrame {
             // if (ae.getSource() == this) {
                 JButton jb = (JButton) ae.getSource();
                 Icon n = jb.getIcon();
+                // System.out.println(String.format("Position: (%d, %d)  (%d, %d)",  x,y, x_b, y_b));
+                // if (n != null){
+                //     System.out.println(n.toString());
+                //     System.out.println(n.hashCode());
+                // }
     
-                if (x != x_b &&
-                        y != y_b &&
-                        (n == icon[1] || n == icon[2] || n == icon[3] ||
-                                n == icon[4] || n == icon[5] || n == icon[6] || n == icon[7])) {
+                if ((x != x_b || y != y_b)
+                 && (n == icon[1] || n == icon[2] || n == icon[3] ||
+                        n == icon[4] || n == icon[5] || n == icon[6] || n == icon[7])) {
                     x = x_b;
                     y = y_b;
                 } else if (x == x_b && y == y_b) {
