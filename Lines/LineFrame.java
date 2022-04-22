@@ -73,9 +73,9 @@ public class LineFrame extends JFrame {
     
     GameOver = new JFrame(" GameOver !");
     JButton msg1 = new JButton(" TRO CHOI KET THUC !");
-    JButton msg2 = new JButton(" Ban Ghi Duoc " + player.scores + " Diem");
+    // JButton msg2 = new JButton(" Ban Ghi Duoc " + player.scores + " Diem");
     GameOver.add(msg1);
-    GameOver.add(msg2);
+    // GameOver.add(msg2);
     GameOver.setLayout(new GridLayout(2, 1));
     GameOver.setSize(290, 150);
     GameOver.setResizable(false);
@@ -274,6 +274,7 @@ public class LineFrame extends JFrame {
                 player.scores = (int) a.MarkResult;
                 score.setText((int) a.MarkResult + " ");
                 try {
+                    a.gameover = checkWin();
                     stopGame(); // dung` tro choi neu cac o da~ day` bong
                 } catch (IOException e) {
                     System.out.println(e);
@@ -285,6 +286,25 @@ public class LineFrame extends JFrame {
             }
             // }
         }
+    }
+    // ----------------------------------------------------------------------------------------
+    // check win condition
+    public boolean checkWin() {
+        int count = 0; // Count big balls
+        for (JButton[] bArr : button) {
+            for (JButton b : bArr){
+                Icon n = b.getIcon();
+                if (n == icon[1] || n == icon[2] || n == icon[3] ||
+                    n == icon[4] || n == icon[5] || n == icon[6] || n == icon[7] ||
+                    n == icon[15] || n == icon[16] || n == icon[17] || n == icon[18] ||
+                    n == icon[19] || n == icon[20] || n == icon[21] )
+                {
+                    count++;
+                }
+            }
+        }
+        System.out.println("Big Balls: "+ count);
+        return (count >= 9*9-1) ? true: false;
     }
 
     // ----------------------------------------------------------------------------------------
@@ -341,16 +361,7 @@ public class LineFrame extends JFrame {
                 topScores.add(player);
                 topScores.showTopScores();
             } else {
-                // System.out.println(GameOver.toString());
-                // System.out.println(GameOver.getComponentCount());
-                // if (GameOver.getComponentCount() >= 2){
-                //     JButton msg2 = (JButton) GameOver.getComponent(1);
-                //     if (msg2 != null) {
-                //         msg2.setText(" Ban Ghi Duoc " + player.scores + " Diem");
-                        
-                //     }
-                // }
-                // GameOver.setVisible(true);
+                GameOver.setVisible(true);
             }
         }
     }

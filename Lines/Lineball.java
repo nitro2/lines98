@@ -102,12 +102,14 @@ public class Lineball {
     // va ve~them 3 bong nho tuong voi 3 mau trong nextcolor[3]
     int i, j;
     point[] FreeCell = new point[3];
-    Random random = new Random();
-    if (RandomBall(3, FreeCell)) for (int k = 0; k < 3; k++) {
-      i = FreeCell[k].x;
-      j = FreeCell[k].y;
-      ball[i][j] = nextcolor[k] + MaxColor;
-    } else gameover = true;
+    if (RandomBall(3, FreeCell)) {
+      for (int k = 0; k < 3; k++) {
+        i = FreeCell[k].x;
+        j = FreeCell[k].y;
+        ball[i][j] = nextcolor[k] + MaxColor;
+      }
+    }
+
     // Sinh random 3 mau se~ xuat hien
     new3color();
   }
