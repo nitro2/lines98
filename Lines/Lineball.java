@@ -121,13 +121,15 @@ public class Lineball {
     point[] CheckCell = new point[MaxCell * MaxCell]; // Luu cac o chua co bong
     boolean[] BoolCheckCell = new boolean[MaxCell * MaxCell]; //Danh dau' cac o chua co bong
 
-    for (int i = 0; i < MaxCell; i++) for (int j = 0; j < MaxCell; j++) if (
-      (ball[i][j]) == 0
-    ) { // Neu o chua co bong
-      CheckCell[ncountFreeBall] = new point(i, j);
-      BoolCheckCell[ncountFreeBall] = true;
-      ncountFreeBall++;
-    } else BoolCheckCell[ncountFreeBall] = false;
+    for (int i = 0; i < MaxCell; i++) for (int j = 0; j < MaxCell; j++) {
+      if ((ball[i][j]) == 0) { // Neu o chua co bong
+        CheckCell[ncountFreeBall] = new point(i, j);
+        BoolCheckCell[ncountFreeBall] = true;
+        ncountFreeBall++;
+      } else {
+        BoolCheckCell[ncountFreeBall] = false;
+      }
+    }
     if (ncountFreeBall < nBall) return false;
 
     Random random = new Random();

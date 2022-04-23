@@ -19,7 +19,7 @@ public class LineFrame extends JFrame {
     public Icon icon[] = new Icon[22];
     public JButton button[][] = new JButton[9][9]; // Mang JButton the hien trang thai cua bang
     public JMenuItem nextball[] = new JMenuItem[3]; // hien thi mau 3 qua bong sap xuat hien
-    public JMenuItem score = new JMenuItem("0  "); // hien thi diem cua nguoi choi
+    public JLabel score = new JLabel("0  "); // hien thi diem cua nguoi choi
     public int x = -1, y = -1; // toa do de luu vi cho qua bong duoc chon
 
     // khoi tao
@@ -86,7 +86,7 @@ public class LineFrame extends JFrame {
     // tao menu
     public void setMenu() {
         JMenuBar menu = new JMenuBar();
-        menu.setLayout(new GridLayout(1, 7));
+        menu.setLayout(new GridLayout(1, 8));
         setJMenuBar(menu);
         JMenu gameMenu = new JMenu("Game"); // them menu Game vao menu
         gameMenu.setMnemonic('g');
@@ -171,7 +171,10 @@ public class LineFrame extends JFrame {
         }
 
         Icon scoreIcon = new ImageIcon("Images/score.png");
-        score.setIcon(scoreIcon);
+        JMenu m = new JMenu();
+        m.setIcon(scoreIcon);
+        menu.add(m);
+
         menu.add(score);
     }
 
@@ -339,6 +342,7 @@ public class LineFrame extends JFrame {
     // save game
     public void loadGame() {
         a.loadGameDataFromFile();
+        a.gameover = false;
         displayNextBall();
         score.setText((int) a.MarkResult + " ");
         drawBall();
