@@ -25,6 +25,7 @@ public class LineFrame extends JFrame {
     // khoi tao
     public LineFrame() {
     //7 qua bong to
+    icon[0] = new ImageIcon("Images/background.png");
     icon[1] = new ImageIcon("Images/big1.png");
     icon[2] = new ImageIcon("Images/big2.png");
     icon[3] = new ImageIcon("Images/big3.png");
@@ -54,6 +55,8 @@ public class LineFrame extends JFrame {
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             button[i][j] = new JButton(icon[0]);
+            button[i][j].setBackground(Color.DARK_GRAY);
+            // button[i][j].setOpaque(true);
             add(button[i][j]);
         }
     }
@@ -68,6 +71,7 @@ public class LineFrame extends JFrame {
     setSize(520, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
+    getContentPane().setBackground(Color.DARK_GRAY);
     setVisible(true);
     
     
