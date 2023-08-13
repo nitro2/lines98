@@ -35,13 +35,13 @@ public class LineFrame extends JFrame {
     icon[7] = new ImageIcon("Images/big7.png");
 
     //7 qua bong nho
-    icon[8] = new ImageIcon("Images/small1.png");
-    icon[9] = new ImageIcon("Images/small2.png");
-    icon[10] = new ImageIcon("Images/small3.png");
-    icon[11] = new ImageIcon("Images/small4.png");
-    icon[12] = new ImageIcon("Images/small5.png");
-    icon[13] = new ImageIcon("Images/small6.png");
-    icon[14] = new ImageIcon("Images/small7.png");
+    icon[8] = new ImageIcon("Images/small_1.png");
+    icon[9] = new ImageIcon("Images/small_2.png");
+    icon[10] = new ImageIcon("Images/small_3.png");
+    icon[11] = new ImageIcon("Images/small_4.png");
+    icon[12] = new ImageIcon("Images/small_5.png");
+    icon[13] = new ImageIcon("Images/small_6.png");
+    icon[14] = new ImageIcon("Images/small_7.png");
 
     //7 qua bong nhay
     icon[15] = new ImageIcon("Images/d1.gif");
@@ -56,7 +56,6 @@ public class LineFrame extends JFrame {
         for (int j = 0; j < 9; j++) {
             button[i][j] = new JButton(icon[0]);
             button[i][j].setBackground(Color.DARK_GRAY);
-            // button[i][j].setOpaque(true);
             add(button[i][j]);
         }
     }
