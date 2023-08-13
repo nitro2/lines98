@@ -294,9 +294,10 @@ public class LineFrame extends JFrame {
             // }
         }
     }
+
     // ----------------------------------------------------------------------------------------
-    // check win condition
-    public boolean checkWin() {
+    // return number of big balls
+    public int getBigBalls() {
         int count = 0; // Count big balls
         for (JButton[] bArr : button) {
             for (JButton b : bArr){
@@ -310,6 +311,13 @@ public class LineFrame extends JFrame {
                 }
             }
         }
+        return count;
+    }
+
+    // ----------------------------------------------------------------------------------------
+    // check win condition
+    public boolean checkWin() {
+        int count = getBigBalls();
         System.out.println("Big Balls: "+ count);
         return (count >= 9*9-1) ? true: false;
     }
